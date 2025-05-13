@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I'm Sorry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body
+  class="
+    bg-rose-100 
+    bg-[url('paper-texture.png')]
+    bg-cover 
+    bg-no-repeat 
+    bg-center 
+    bg-blend-multiply 
+    flex flex-col items-center justify-center 
+    min-h-screen text-center p-4
+  "
+>
+
+  <!-- Comic Image (rounded circle) -->
+  <img 
+    src="image.png" 
+    alt="Sorry Comic" 
+    class="w-48 h-48 object-cover  border-4 border-white shadow-lg mb-4"
+  >
+
+  <!-- Main "I'm Sorry" -->
+  <div id="sorry-container" class="text-3xl font-bold text-red-500 mb-4">
+    Sorry ane 🥺❤️
+  </div>
+
+ <!-- Buttons -->
+<div class="flex gap-4 relative h-20 w-full justify-center">
+  <!-- Solid blue "Hmm" button -->
+  <button style="height: 40px; margin: 1%;"
+    id="hmmBtn"
+    class="bg-blue-500 text-white px-4 rounded hover:bg-blue-600 transition"
+  >
+    Hali mage kukko 
+  </button>
+
+  <!-- Moving "NO" button -->
+  <button
+    id="noBtn"
+    class="bg-red-100 border border-red-500 text-red-700 px-4 py-2 rounded absolute transition-all duration-200"
+    style="top: 0px; left: 160px;"
+  >
+    NO
+  </button>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const hmmBtn = document.getElementById("hmmBtn");
+  const sorryContainer = document.getElementById("sorry-container");
+  const noBtn = document.getElementById("noBtn");
+
+  let clickCount = 1;
+  const maxClicks = 10;
+
+  // "Hmm" button logic
+  hmmBtn.addEventListener("click", () => {
+    if (clickCount < maxClicks) {
+      const newSorry = document.createElement("div");
+      newSorry.textContent = "Sorry ane 🥺❤️";
+      newSorry.className = "text-3xl font-bold text-red-500 mt-2";
+      sorryContainer.parentNode.insertBefore(newSorry, sorryContainer.nextSibling);
+      clickCount++;
+    } else {
+      // Redirect to WhatsApp
+      window.location.href = "https://wa.link/8nl1od";
+    }
+  });
+
+  // Make "NO" button run away on hover
+  noBtn.addEventListener("mouseenter", () => {
+    const container = noBtn.parentElement;
+    const maxX = container.offsetWidth - noBtn.offsetWidth;
+    const maxY = container.offsetHeight - noBtn.offsetHeight;
+
+    const randX = Math.floor(Math.random() * maxX);
+    const randY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = `${randX}px`;
+    noBtn.style.top = `${randY}px`;
+  });
+</script>
+
+</body>
+</html>
